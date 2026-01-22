@@ -11,10 +11,10 @@ import java.net.http.HttpResponse;
 
 public class Task1 {
     public static final String SOURCE_USERS_URL = "https://jsonplaceholder.typicode.com/users";
+    static HttpClient client = HttpClient.newHttpClient();
 
     public static void registerUser(User user) throws IOException, InterruptedException {
         Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().create();
-        HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(SOURCE_USERS_URL))
@@ -31,7 +31,6 @@ public class Task1 {
 
     public static void updateUser(int userId, String parametr, String update) throws IOException, InterruptedException {
         String userReference = "https://jsonplaceholder.typicode.com/users/" + userId;
-        HttpClient client = HttpClient.newHttpClient();
 
         String updateJson = String.format("""
         {
@@ -53,7 +52,6 @@ public class Task1 {
 
     public static void deleteUser(int userId) throws IOException, InterruptedException {
         String SOURCE_user_URL = "https://jsonplaceholder.typicode.com/users/" + userId;
-        HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(SOURCE_user_URL))
@@ -84,7 +82,6 @@ public class Task1 {
 
     public static void userInfoId(int userId) throws IOException, InterruptedException {
         String userReference = "https://jsonplaceholder.typicode.com/users/" + userId;
-        HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(userReference))
@@ -100,7 +97,6 @@ public class Task1 {
 
     public static void userInfoUsername(String userName) throws IOException, InterruptedException {
         String userReference = "https://jsonplaceholder.typicode.com/users?username=" + userName;
-        HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(userReference))
